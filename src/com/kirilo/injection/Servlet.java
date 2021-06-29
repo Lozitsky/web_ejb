@@ -29,7 +29,8 @@ public class Servlet extends HttpServlet {
         writer.append("<h1>Hello " + pojo.getNameType() + "!!</h1>");
         writer.append("<br>");
 
-        writer.append("<h3><a href=\"http://localhost:8080/web_ejb/JNDI\"> JNDI </a></h3>");
+//        writer.append("<h3><a href=\"http://localhost:8080/web_ejb/JNDI\"> JNDI </a></h3>");
+        writer.append("<h3><a href=\"http://lozitsky.ml:8080/web_ejb/JNDI\"> JNDI </a></h3>");
         writer.append("</body>");
         writer.append("</html>");
     }

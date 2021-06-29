@@ -53,8 +53,8 @@
     <role rolename="manager-gui"/>
     <role rolename="manager-script"/>
     <role rolename="tomee-admin"/>
-
-    <user username="admin" password="admin" roles="tomee-admin,manager,manager-gui,manager-script"/>
+    <!--    must be changed before startup or using the realm in server.xml -->
+    <user username="TOMEE" password="TOMEE" roles="tomee-admin,manager,manager-gui,manager-script"/>
 
 </tomcat-users>
 

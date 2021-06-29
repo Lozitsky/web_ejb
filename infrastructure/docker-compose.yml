@@ -9,11 +9,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.49'
-          memory: 200M
+          cpus: '0.6'
+          memory: 250M
         reservations:
-          cpus: '0.4'
-          memory: 150M
+#          cpus: '0.4'
+          memory: 190M
     ports:
       - '8080:8080'
     expose:
@@ -27,7 +27,7 @@ services:
       JDBCUSER: 'admin_db'
       JDBCPASS: 'password'
       USESSL: 'false'
-      TZ: 'Europe/Kiev'
+#      TZ: 'Europe/Kiev'
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -42,10 +42,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.49'
-          memory: 170M
+          cpus: '0.3'
+          memory: 130M
         reservations:
-          cpus: '0.25'
+#          cpus: '0.25'
           memory: 100M
     restart: always
     ports:
@@ -58,6 +58,7 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'PASSWORD'
       MYSQL_ROOT_HOST: '%'
+      TZ: 'Europe/Kiev'
     volumes:
       - ../db:/tmp/database
 #      - ../db:/docker-entrypoint-initdb.d

@@ -93,6 +93,10 @@
                         <libs>
                             <lib>mysql:mysql-connector-java:${mysql.version}</lib>
                         </libs>
+                        <tomeeHost>localhost</tomeeHost>
+                        <user>tomee</user>
+                        <password>tomee</password>
+<!--                        <path>${project.build.directory}/${project.build.finalName}.war</path>-->
                     </configuration>
                 </plugin>
 
@@ -163,7 +167,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <tomee.version>8.0.5</tomee.version>
+        <tomee.version>8.0.6</tomee.version>
         <tomee.flavour>plume</tomee.flavour>
         <mysql.version>8.0.25</mysql.version>
     </properties>

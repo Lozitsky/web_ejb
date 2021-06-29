@@ -21,7 +21,8 @@
         jdbcDriver = ${JDBCDRIVER}
 <!--        jdbcUrl = jdbc:mysql://db:3306/awesome_project?useUnicode=yes&amp;characterEncoding=UTF-8-->
 <!--        jdbcUrl = jdbc:mysql://db:3306/awesome_project?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull&amp;emulateLocators=true&amp;characterEncoding=UTF-8&amp;useSSL=false-->
-        jdbcUrl = jdbc:${JDBCPROVIDER}://${JDBCHOST}:${JDBCPORT}/${SCHEMADB}?useSSL=${USESSL}&amp;serverTimezone=${TZ}
+<!--        jdbcUrl = jdbc:${JDBCPROVIDER}://${JDBCHOST}:${JDBCPORT}/${SCHEMADB}?useSSL=${USESSL}&amp;serverTimezone=${TZ}-->
+        jdbcUrl = jdbc:${JDBCPROVIDER}://${JDBCHOST}:${JDBCPORT}/${SCHEMADB}?useSSL=${USESSL}
         JtaManaged true
     </Resource>
 

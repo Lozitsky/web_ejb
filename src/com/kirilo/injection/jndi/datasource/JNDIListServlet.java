@@ -46,7 +46,8 @@ public class JNDIListServlet extends HttpServlet {
             }
         });
 
-        writer.append("<h3><a href=\"http://localhost:8080/web_ejb/\"> Hello Servlet </a></h3>\n");
+//        writer.append("<h3><a href=\"http://localhost:8080/web_ejb/\"> Hello Servlet </a></h3>\n");
+        writer.append("<h3><a href=\"http://lozitsky.ml:8080/web_ejb/\"> Hello Servlet </a></h3>\n");
 
         writer.append("<p>Current Time is: " + getCurrentTime() + "</p>\n");
 
@@ -114,7 +115,8 @@ public class JNDIListServlet extends HttpServlet {
                             jndiList.add(" -  DriverName:  '" + metaData.getDriverName() + "'");
                             jndiList.add(" -  DriverVersion:  '" + metaData.getDriverVersion() + "'");
                             jndiList.add(" -  UserName:  '" + metaData.getUserName() + "'");
-                            jndiList.add("<h3><a href=\"http://localhost:8080/web_ejb/JNDIServlet\"> JNDIServlet </a></h3>");
+                            jndiList.add("<h3><a href=\"http://lozitsky.ml:8080/web_ejb/JNDIServlet\"> JNDIServlet </a></h3>");
+//                            jndiList.add("<h3><a href=\"http://localhost:8080/web_ejb/JNDIServlet\"> JNDIServlet </a></h3>");
 //                            jndiList.add("<h3><a href=\"http://localhost:8088/?server=db&username=admin_db&db=web_ejb\"> Adminer </a></h3>");
 
                             if (valid) {

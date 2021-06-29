@@ -36,10 +36,16 @@
     <!-- Global JNDI resources
          Documentation at /docs/jndi-resources-howto.html
     -->
+<!--    https://stackoverflow.com/a/31181557/9586230 -->
     <GlobalNamingResources>
         <!-- Editable user database that can also be used by
              UserDatabaseRealm to authenticate users
         -->
+        <Resource name="UserDatabase" auth="Container"
+                  type="org.apache.catalina.UserDatabase"
+                  description="User database that can be updated and saved"
+                  factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+                  pathname="/usr/local/tomee/conf/tomcat-users.xml" />
 
     </GlobalNamingResources>
 
@@ -138,14 +144,35 @@
 
             <!-- Use the LockOutRealm to prevent attempts to guess user passwords
                  via a brute-force attack -->
-            <Realm className="org.apache.catalina.realm.LockOutRealm">
-                <!-- This Realm uses the UserDatabase configured in the global JNDI
+<!--            <Realm className="org.apache.catalina.realm.LockOutRealm">
+                &lt;!&ndash; This Realm uses the UserDatabase configured in the global JNDI
                      resources under the key "UserDatabase".  Any edits
                      that are performed against this UserDatabase are immediately
-                     available for use by the Realm.  -->
+                     available for use by the Realm.  &ndash;&gt;
                 <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
                        resourceName="UserDatabase"/>
-            </Realm>
+            </Realm>-->
+
+<!--            <Realm className="org.apache.catalina.realm.DataSourceRealm"
+                   dataSourceName="jdbc/authority"
+                   userTable="users" userNameCol="user_name" userCredCol="user_pass"
+                   userRoleTable="user_roles" roleNameCol="role_name"/>-->
+
+<!--            database with credentials must be created before startup or the tomcat-users credentials are used -->
+            <Realm
+                    className="org.apache.catalina.realm.DataSourceRealm"
+                    dataSourceName="MySQLDataSource"
+                    userTable="users"
+                    userNameCol="user_name"
+                    userCredCol="user_pass"
+                    userRoleTable="user_roles"
+                    roleNameCol="role_name"/>
+
+<!--            <Realm className="org.apache.catalina.realm.JDBCRealm"
+                   driverName="org.gjt.mm.mysql.Driver"
+                   connectionURL="jdbc:mysql://localhost/authority?user=dbuser&amp;password=dbpass"
+                   userTable="users" userNameCol="user_name" userCredCol="user_pass"
+                   userRoleTable="user_roles" roleNameCol="role_name"/>-->
 
             <Host name="localhost" appBase="webapps"
                   unpackWARs="true" autoDeploy="true">
