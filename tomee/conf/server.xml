@@ -36,7 +36,7 @@
     <!-- Global JNDI resources
          Documentation at /docs/jndi-resources-howto.html
     -->
-<!--    https://stackoverflow.com/a/31181557/9586230 -->
+    <!--    https://stackoverflow.com/a/31181557/9586230 -->
     <GlobalNamingResources>
         <!-- Editable user database that can also be used by
              UserDatabaseRealm to authenticate users
@@ -45,7 +45,7 @@
                   type="org.apache.catalina.UserDatabase"
                   description="User database that can be updated and saved"
                   factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
-                  pathname="/usr/local/tomee/conf/tomcat-users.xml" />
+                  pathname="/usr/local/tomee/conf/tomcat-users.xml"/>
 
     </GlobalNamingResources>
 
@@ -144,39 +144,43 @@
 
             <!-- Use the LockOutRealm to prevent attempts to guess user passwords
                  via a brute-force attack -->
-<!--            <Realm className="org.apache.catalina.realm.LockOutRealm">
-                &lt;!&ndash; This Realm uses the UserDatabase configured in the global JNDI
-                     resources under the key "UserDatabase".  Any edits
-                     that are performed against this UserDatabase are immediately
-                     available for use by the Realm.  &ndash;&gt;
-                <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
-                       resourceName="UserDatabase"/>
-            </Realm>-->
-
-<!--            <Realm className="org.apache.catalina.realm.DataSourceRealm"
-                   dataSourceName="jdbc/authority"
-                   userTable="users" userNameCol="user_name" userCredCol="user_pass"
-                   userRoleTable="user_roles" roleNameCol="role_name"/>-->
-
-<!--            database with credentials must be created before startup or the tomcat-users credentials are used -->
-            <Realm
-                    className="org.apache.catalina.realm.DataSourceRealm"
-                    dataSourceName="MySQLDataSource"
-                    userTable="users"
-                    userNameCol="user_name"
-                    userCredCol="user_pass"
-                    userRoleTable="user_roles"
-                    roleNameCol="role_name"/>
-
-<!--            <Realm className="org.apache.catalina.realm.JDBCRealm"
-                   driverName="org.gjt.mm.mysql.Driver"
-                   connectionURL="jdbc:mysql://localhost/authority?user=dbuser&amp;password=dbpass"
-                   userTable="users" userNameCol="user_name" userCredCol="user_pass"
-                   userRoleTable="user_roles" roleNameCol="role_name"/>-->
+            <!--            https://serverfault.com/a/818372/616054 -->
+            <!--            database with credentials must be created before startup or the tomcat-users credentials are used -->
+            <Realm className="org.apache.catalina.realm.LockOutRealm"
+                   failureCount="5" lockOutTime="60"> <!-- note that when an account is locked correct password
+                                               login is no longer possible (would otherwise defeat purpose of lockout),
+                                               but also lockoutTime is still reset in each correct attempt -->
+                <Realm className="org.apache.catalina.realm.CombinedRealm">
+                    <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+                           resourceName="UserDatabase">
+                        <CredentialHandler
+                                className="org.apache.catalina.realm.SecretKeyCredentialHandler"
+                                algorithm="PBKDF2WithHmacSHA512"
+                                iterations="100000"
+                                keyLength="256"
+                                saltLength="16">
+                        </CredentialHandler>
+                    </Realm>
+                    <Realm className="org.apache.catalina.realm.DataSourceRealm"
+                           dataSourceName="MySQLDataSource"
+                           userTable="users"
+                           userNameCol="user_name"
+                           userCredCol="user_pass"
+                           userRoleTable="user_roles"
+                           roleNameCol="role_name">
+                        <CredentialHandler
+                                className="org.apache.catalina.realm.SecretKeyCredentialHandler"
+                                algorithm="PBKDF2WithHmacSHA512"
+                                iterations="100000"
+                                keyLength="256"
+                                saltLength="16">
+                        </CredentialHandler>
+                    </Realm>
+                </Realm>
+            </Realm>
 
             <Host name="localhost" appBase="webapps"
                   unpackWARs="true" autoDeploy="true">
-
                 <!-- SingleSignOn valve, share authentication between web applications
                      Documentation at: /docs/config/valve.html -->
                 <!--

@@ -16,12 +16,13 @@
   limitations under the License.
 -->
 <Context antiResourceLocking="false" privileged="true" docBase="/usr/local/tomee/webapps/manager">
+    <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor"
+                     sameSiteCookies="strict" />
 <!--    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />-->
 <!--    because the app in the the docker network -->
-    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="172\.\d+\.\d+\.\d+" />
+<!--    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="172\.\d+\.\d+\.\d+" />-->
 <!--      <Valve className="org.apache.catalina.valves.RemoteAddrValve"
            allow="172\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
-    <!--<Manager
+    <Manager
             sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
--->
 </Context>

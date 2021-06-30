@@ -20,13 +20,13 @@ create table if not exists task
     );
 
 create table users (
-                       user_name         varchar(15) not null primary key,
-                       user_pass         varchar(15) not null
+                       user_name         varchar(20) not null primary key,
+                       user_pass         varchar(150) not null
 );
 
 create table user_roles (
-                            user_name         varchar(15) not null,
-                            role_name         varchar(15) not null,
+                            user_name         varchar(20) not null,
+                            role_name         varchar(20) not null,
                             primary key (user_name, role_name)
 );
 
@@ -34,7 +34,7 @@ insert into task VALUES (null, 'My first task', 'The description of my first tas
 insert into task VALUES (null, 'My second task', 'The description of my second task', 'TODO', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- MUST BE CHANGED BEFORE STARTUP
-insert into users VALUES ('admin1', 'admin1');
+insert into users VALUES ('admin1', '02980e42a5e817472314cb3d4a99d2d4$100000$07a281cf4234c8e97f7c5be532bf9c8995d42c081ba9d044455e6c7f56531c52');
 insert into user_roles VALUES ('admin1', 'tomee-admin');
 insert into user_roles VALUES ('admin1', 'manager-gui');
 insert into user_roles VALUES ('admin1', 'manager');
