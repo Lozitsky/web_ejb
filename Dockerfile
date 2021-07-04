@@ -8,10 +8,14 @@ COPY ./tomee/conf/system.properties /usr/local/tomee/conf/
 COPY ./tomee/conf/context.xml /usr/local/tomee/webapps/manager/META-INF
 COPY ./tomee/conf/context.xml /usr/local/tomee/webapps/host-manager/META-INF
 COPY ./target/web_ejb/WEB-INF/lib /usr/local/tomee/lib
+COPY ./tomee/cert/.lozitsky /usr/local/tomee/conf/
 CMD ["catalina.sh", "run"]
 ENV TZ Europe/Kiev
-HEALTHCHECK --interval=10s --timeout=3s --retries=6 CMD curl -f http://app:8080/web_ejb/ \
+#HEALTHCHECK --interval=10s --timeout=3s --retries=6 CMD curl -f http://app:8080/web_ejb/ \
+HEALTHCHECK --interval=10s --timeout=3s --retries=6 CMD curl -f https://app/web_ejb/ \
 || exit 1
-HEALTHCHECK --interval=10s --timeout=3s --retries=12 CMD curl -f http://app:8080/web_ejb/JNDIServlet \
+#HEALTHCHECK --interval=10s --timeout=3s --retries=12 CMD curl -f http://app:8080/web_ejb/JNDIServlet \
+HEALTHCHECK --interval=10s --timeout=3s --retries=12 CMD curl -f https://app/web_ejb/JNDIServlet \
 || exit 1
 #EXPOSE 8080
+#EXPOSE 433

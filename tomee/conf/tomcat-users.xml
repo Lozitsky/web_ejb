@@ -52,9 +52,11 @@
     <role rolename="manager"/>
     <role rolename="manager-gui"/>
     <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
     <role rolename="tomee-admin"/>
     <!--    must be changed before startup or using the realm in server.xml -->
-    <user username="TOMEE" password="63c75efe45798587899c21e7474d8113$100000$34b1dfeda197c8291a7085ab246f4e6659397110d757aa3e93fd62ee02d03854" roles="tomee-admin,manager,manager-gui,manager-script"/>
+    <user username="TOMEE" password="63c75efe45798587899c21e7474d8113$100000$34b1dfeda197c8291a7085ab246f4e6659397110d757aa3e93fd62ee02d03854" roles="tomee-admin,manager,manager-gui,manager-script,manager-jmx,manager-status"/>
 
 </tomcat-users>
 

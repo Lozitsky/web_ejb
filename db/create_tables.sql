@@ -39,3 +39,5 @@ insert into user_roles VALUES ('admin1', 'tomee-admin');
 insert into user_roles VALUES ('admin1', 'manager-gui');
 insert into user_roles VALUES ('admin1', 'manager');
 insert into user_roles VALUES ('admin1', 'manager-script');
+insert into user_roles VALUES ('admin1', 'manager-jmx');
+insert into user_roles VALUES ('admin1', 'manager-status');
