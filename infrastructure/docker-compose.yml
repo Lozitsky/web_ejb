@@ -15,9 +15,9 @@ services:
 #          cpus: '0.4'
           memory: 190M
     ports:
-      - '8080:8080'
+      - '80:80'
     expose:
-      - '8080'
+      - '80'
     environment:
       JDBCDRIVER: 'com.mysql.cj.jdbc.Driver'
       JDBCPROVIDER: 'mysql'
