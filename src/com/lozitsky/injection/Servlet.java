@@ -1,4 +1,4 @@
-package com.kirilo.injection;
+package com.lozitsky.injection;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;

@@ -9,7 +9,7 @@
     <persistence-unit name="Task" transaction-type="JTA">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>jdbc/MySQLDataSource2</jta-data-source>
-        <!--        <class>com.kirilo.task.entities.Task</class>-->
+        <!--        <class>com.lozitsky.task.entities.Task</class>-->
         <properties>
             <!--            auto create table with sequence-->
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>

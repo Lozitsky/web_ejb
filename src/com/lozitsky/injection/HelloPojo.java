@@ -1,4 +1,4 @@
-package com.kirilo.injection;
+package com.lozitsky.injection;
 
 public class HelloPojo {
     public String getNameType() {

@@ -1,4 +1,4 @@
-package com.kirilo.injection.jndi.datasource;
+package com.lozitsky.injection.jndi.datasource;
 
 import javax.naming.*;
 import javax.servlet.ServletException;
@@ -95,15 +95,12 @@ public class JNDIListServlet extends HttpServlet {
         try {
             NamingEnumeration<Binding> list = ctx.listBindings(indent);
             while (list.hasMore()) {
-
                 try {
                     Binding next = list.next();
                     String className = next.getClassName();
                     String name = next.getName();
                     Object object = next.getObject();
                     jndiList.add(className + " = " + name);
-
-//                if ("MySQLDataSource".equals(name) && object instanceof DataSource) {
                     if (object instanceof DataSource) {
                         DataSource ds = (DataSource) ctx.lookup("MySQLDataSource");
                         try (Connection connection = ds.getConnection()) {
@@ -118,7 +115,6 @@ public class JNDIListServlet extends HttpServlet {
 //                            jndiList.add("<h3><a href=\"http://lozitsky.ml:8080/web_ejb/JNDIServlet\"> JNDIServlet </a></h3>");
                             jndiList.add("<h3><a href=\"http://localhost:80/web_ejb/JNDIServlet\"> JNDIServlet </a></h3>");
 //                            jndiList.add("<h3><a href=\"http://localhost:8088/?server=db&username=admin_db&db=web_ejb\"> Adminer </a></h3>");
-
                             if (valid) {
                                 jndiList.add(String.format("Total load time: %dm %ds", timeLeft / 60, timeLeft % 60));
                             }
@@ -131,11 +127,9 @@ public class JNDIListServlet extends HttpServlet {
                         }
                     }
                     if (object instanceof javax.naming.Context) {
-
                         if (indent == null) {
                             indent = "";
                         }
-
                         jndiList.addAll(getListContext((Context) object, indent + "/"));
                     }
                 } catch (NamingException e) {

@@ -1,4 +1,4 @@
-package com.kirilo.injection.jndi.datasource;
+package com.lozitsky.injection.jndi.datasource;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletConfig;

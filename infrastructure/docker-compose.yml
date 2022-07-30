@@ -4,8 +4,8 @@ services:
     build:
       context: ..
     container_name: app
-    image: app
-#    image: wmgpznj4/web-ejb
+#    image: app
+    image: wmgpznj4/local-web-ejb
     deploy:
       resources:
         limits:
